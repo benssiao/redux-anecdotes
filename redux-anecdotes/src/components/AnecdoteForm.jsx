@@ -1,10 +1,16 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { createNew } from "../reducers/anecdoteReducer";
+import { backendCreateNew } from "../reducers/anecdoteReducer";
 
 function AnecdoteForm() {
   const [newAnecdote, setNewAnecdote] = useState("");
   const dispatch = useDispatch();
+
+  async function onClickAdd(e) {
+    e.preventDefault();
+    dispatch(backendCreateNew(newAnecdote));
+    setNewAnecdote("");
+  }
 
   return (
     <>
@@ -16,15 +22,7 @@ function AnecdoteForm() {
             onChange={(e) => setNewAnecdote(e.target.value)}
           />
         </div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            dispatch(createNew(newAnecdote));
-            setNewAnecdote("");
-          }}
-        >
-          create
-        </button>
+        <button onClick={onClickAdd}>create</button>
       </form>
     </>
   );

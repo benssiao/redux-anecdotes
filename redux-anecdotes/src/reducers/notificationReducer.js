@@ -14,6 +14,14 @@ const notificationSlice = createSlice({
   },
 });
 
+export const displayNotification = (notification) => {
+  return async (dispatch, getState) => {
+    dispatch(reduxSetNotification(notification));
+    setTimeout(() => {
+      dispatch(reduxRemoveNotification());
+    }, 5000);
+  };
+};
 export const { reduxSetNotification, reduxRemoveNotification } =
   notificationSlice.actions;
 

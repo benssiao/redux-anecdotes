@@ -9,6 +9,9 @@ const Notification = () => {
   let style;
   if (notification !== "") {
     style = {
+      position: "absolute",
+      left: "50%",
+      top: "5%",
       border: "solid",
       padding: 10,
       borderWidth: 1,
